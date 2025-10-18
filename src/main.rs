@@ -91,17 +91,19 @@ fn convert_month(input_month: &str) -> Option<String> {
 
 fn convert_date(date: &str) -> Option<String> {
     // 29 FEB 2024 to dd/mm/yyyy
+    // New version 2025-10-01
 
-    let split: Vec<&str> = date.split_ascii_whitespace().collect();
+    // let split: Vec<&str> = date.split_ascii_whitespace().collect();
+    let split: Vec<&str> = date.split('-').collect();
     if split.len() != 3 {
         return None;
     }
 
-    let day = split.first()?;
-    let year = split.last()?;
+    let year = split.first()?;
     let month = split.get(1)?;
+    let day = split.last()?;
 
-    let month = convert_month(month)?;
+    // let month = convert_month(month)?;
 
     Some(format!("{day}/{month}/{year}"))
 }
